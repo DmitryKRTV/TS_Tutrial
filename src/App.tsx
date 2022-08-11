@@ -16,15 +16,14 @@ function App() {
     return (
         <div className="App">
             <header className="App-header">
-                <OnOff on={onOffValue} onClick={setOnOffValue}/>
-                <UncontrolledOnOff/>
+                <OnOff on={onOffValue} onChange={setOnOffValue}/>
+                <UncontrolledOnOff onChange={setOnOffValue}/>
 
-                {/*<UncontrolledAccordion titleValue={"Menu"}/>*/}
                 <UncontrolledAccordion titleValue={"Menu"}/>
                 <UncontrolledRating/>
 
                 <Rating value={ratingValue} onClick={setRatingValue}/>
-                <Accordion title={"Menu"} collapsed={accordionCollapsed} onClick={setAccordionCollapsed}/>
+                <Accordion title={"Menu"} collapsed={accordionCollapsed} onChange={setAccordionCollapsed}/>
             </header>
         </div>
     );
