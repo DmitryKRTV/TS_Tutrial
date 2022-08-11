@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import Star from "./Star";
+import Star from "../Star";
 
 export type RatingValueType = 0 | 1 | 2 | 3 | 4 | 5
 
