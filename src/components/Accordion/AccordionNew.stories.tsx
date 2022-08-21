@@ -9,6 +9,13 @@ export default {
   parameters: {
     layout: 'fullscreen',
   },
+  argTypes: {
+    onClick: {
+      table: {
+        category: "Events"
+      }
+    },
+  },
 } as ComponentMeta<typeof Accordion>;
 
 const callBack = actions("on")
