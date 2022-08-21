@@ -1,13 +1,14 @@
 import React, {useState} from "react";
-import Star from "./Star";
+import Star from "../Star";
+import {RatingValueType} from "../Rating/Rating";
 
 type RatingPropsType = {
-
+    defaultValue?: RatingValueType
 }
 
 const UncontrolledRating = (props: RatingPropsType) => {
 
-    let [value, setValue] = useState(4);
+    let [value, setValue] = useState<RatingValueType>(props.defaultValue ? props.defaultValue : 4);
 
     return (
         <div>

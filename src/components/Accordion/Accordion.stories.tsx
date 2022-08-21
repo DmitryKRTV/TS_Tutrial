@@ -13,5 +13,5 @@ const callBack = actions("on")
 
 export const AccordionChanging = () => {
     const [accordionCollapsed, setAccordionCollapsed] = useState<boolean>(false);
-    return <Accordion title={"Menu"} collapsed={accordionCollapsed} onChange={setAccordionCollapsed}/>
+    return <Accordion title={"Menu"} collapsed={accordionCollapsed} onClick={setAccordionCollapsed}/>
 }

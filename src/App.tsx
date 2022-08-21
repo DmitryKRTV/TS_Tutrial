@@ -1,11 +1,11 @@
 import React, {useState} from "react";
 import './App.css';
 import Accordion, {PageTitle} from "./components/Accordion/Accordion";
-import UncontrolledRating from "./components/UncontrolledRating";
+import UncontrolledRating from "./components/UncontrolledRating/UncontrolledRating";
 import {Rating, RatingValueType} from "./components/Rating/Rating";
-import UncontrolledAccordion from "./components/UncontrolledAccordion";
+import UncontrolledAccordion from "./components/UncontrolledAccordion/UncontrolledAccordion";
 
-import UncontrolledOnOff from "./components/UncontrolledOnOff";
+import UncontrolledOnOff from "./components/UncontrolledOnOff/UncontrolledOnOff";
 import {OnOff} from "./components/OnOff/OnOff";
 
 function App() {
@@ -24,7 +24,7 @@ function App() {
                 <UncontrolledRating/>
 
                 <Rating value={ratingValue} onClick={setRatingValue}/>
-                <Accordion title={"Menu"} collapsed={accordionCollapsed} onChange={setAccordionCollapsed}/>
+                <Accordion title={"Menu"} collapsed={accordionCollapsed} onClick={setAccordionCollapsed}/>
             </header>
         </div>
     );
