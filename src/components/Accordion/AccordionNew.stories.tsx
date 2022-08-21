@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import Accordion from "./Accordion";
-import {actions} from "@storybook/addon-actions";
+import Accordion, {itemsExample} from "./Accordion";
+import {action} from "@storybook/addon-actions";
 
 export default {
   title: "AccordionNew stories",
@@ -10,7 +10,7 @@ export default {
     layout: 'fullscreen',
   },
   argTypes: {
-    onClick: {
+    onChange: {
       table: {
         category: "Events"
       }
@@ -18,18 +18,18 @@ export default {
   },
 } as ComponentMeta<typeof Accordion>;
 
-const callBack = actions("on")
+const callBack = action("item was clicked")
 
-const Template: ComponentStory<typeof Accordion> = (args) => {
-  return <Accordion {...args} />
-};
+const Template: ComponentStory<typeof Accordion> = (args) => <Accordion {...args}/>;
 
 export const AccordionChangingNew = Template.bind({});
 
 AccordionChangingNew.args = {
   title: "Menu",
   collapsed: true,
-  onClick: ()=> callBack
+  onChange: ()=> {},
+  items: itemsExample,
+  onClick: callBack,
 };
 
 // export const LoggedOut = Template.bind({});
@@ -38,9 +38,16 @@ AccordionChangingNew.args = {
 
 export const AccordionChangingWithOld: ComponentStory<typeof Accordion> = (args) => {
   const [accordionCollapsed, setAccordionCollapsed] = useState<boolean>(false);
-  return <Accordion title={"Menu"} collapsed={accordionCollapsed} onClick={setAccordionCollapsed}/>
+  return <Accordion {...args}  // эта строка ВСЕГДА должна быть впереди
+                    collapsed={accordionCollapsed}
+                    onChange={setAccordionCollapsed}
+                    onClick={callBack}
+
+
+  />
 }
 
 AccordionChangingWithOld.args = {
   title: "Menu",
+  items: itemsExample,
 };

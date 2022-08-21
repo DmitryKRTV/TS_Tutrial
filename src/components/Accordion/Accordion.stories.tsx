@@ -1,6 +1,6 @@
 import React, {useState} from "react";
-import {actions} from "@storybook/addon-actions";
-import Accordion from "./Accordion";
+import {action} from "@storybook/addon-actions";
+import Accordion, {itemsExample} from "./Accordion";
 
 
 export default {
@@ -8,10 +8,10 @@ export default {
     components: Accordion,
 };
 
-const callBack = actions("on")
+const callBack = action("item was clicked")
 
 
 export const AccordionChanging = () => {
     const [accordionCollapsed, setAccordionCollapsed] = useState<boolean>(false);
-    return <Accordion title={"Menu"} collapsed={accordionCollapsed} onClick={setAccordionCollapsed}/>
+    return <Accordion title={"Menu"} collapsed={accordionCollapsed} onChange={setAccordionCollapsed} items={itemsExample} onClick={() => callBack()}/>
 }
