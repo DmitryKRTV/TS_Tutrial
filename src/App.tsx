@@ -7,6 +7,7 @@ import UncontrolledAccordion from "./components/UncontrolledAccordion/Uncontroll
 
 import UncontrolledOnOff from "./components/UncontrolledOnOff/UncontrolledOnOff";
 import {OnOff} from "./components/OnOff/OnOff";
+import {UseEffectDemo} from "./stories/useEffect/UseEffect.stories";
 
 function App() {
 
@@ -25,6 +26,7 @@ function App() {
 
                 <Rating value={ratingValue} onClick={setRatingValue}/>
                 <Accordion title={"Menu"} collapsed={accordionCollapsed} onChange={setAccordionCollapsed} items={itemsExample} onClick={()=>{}}/>
+                <UseEffectDemo/>
             </header>
         </div>
     );
