@@ -1,6 +1,6 @@
 import {SuperInput} from "../SuperInput/SuperInput";
 import {ComponentMeta, ComponentStory} from "@storybook/react";
-import React, {ChangeEvent, useMemo, useState} from "react";
+import React, {ChangeEvent, useCallback, useMemo, useState} from "react";
 
 
 
@@ -71,5 +71,49 @@ export const HelpsToReactMemo = () => {
         <button onClick={addUser}></button>
         {counter}
         <Users users={newArray}/>
+    </>
+}
+
+
+const BooksSecret = (props: { Books: Array<string>; addUser: () => void }) => {
+    console.log("Books")
+    return <>
+        <button onClick={()=> props.addUser()}></button>
+        <div>{props.Books.map((b,i) => <div key={i}>{b}</div>)}</div>
+    </>
+
+}
+
+const Books = React.memo(BooksSecret)
+
+export const LikeUseCallBack = () => {
+    const [counter, setCounter] = useState(0);
+    const [books, setBooks] = useState(["A1", "B2", "C3"]);
+
+
+    // const addBook = () => {
+    //     const newUsers = [...books, "A2" + new Date().getTime()]
+    //     setBooks(newUsers)
+    // }
+
+
+    const newArray = useMemo(()=>{
+        return books.filter(u => u.toLowerCase().indexOf("a") > -1)
+    },[books])
+
+    // const memoAddBook = useMemo(() => {
+    //     return addBook
+    // }, [books]);
+
+    const memoAddBook2 = useCallback(() => {
+        const newUsers = [...books, "A2" + new Date().getTime()]
+        setBooks(newUsers)
+    }, [books]);
+
+
+    return <>
+        <button onClick={() => setCounter(counter + 1)}></button>
+        {counter}
+        <Books Books={newArray} addUser={memoAddBook2}/>
     </>
 }
