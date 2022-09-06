@@ -62,12 +62,15 @@ export const SetTimeoutEmaple = () => {
     useEffect(()=> {
         console.log("only firs render (componentsDidMount)")
 
-        setInterval(() => {
+        const intId = setInterval(() => {
             let date = new Date();
             setHors(() => date.getHours())
             setMinutes(() => date.getMinutes())
             setSeconds(() => date.getSeconds())
         }, 1000)
+        return () => {
+            clearInterval(intId)
+        }
         //indexedDB
         //document.getElementID
     },[])
@@ -91,3 +94,61 @@ export const SetTimeoutEmaple = () => {
     </>
 }
 
+export const ResetUseEffect = () => {
+    console.log("UseEffectDemo Component")
+    const [counter, setCounter] = useState(1);
+
+    useEffect(()=> {
+        console.log("useEffect render" + counter)
+
+        return () => {
+            console.log("RESET effect")
+        }
+    },[counter])
+
+    return <>
+        <button onClick={() => setCounter(counter + 1)}>+</button>
+        {counter}
+    </>
+}
+
+export const KeysTrackerExample = () => {
+    console.log("UseEffectDemo Component")
+    const [text, setText] = useState("");
+
+    useEffect(()=> {
+        const handler = (e: KeyboardEvent)=>{
+            console.log(e.key)
+            setText((state) => state + e.key)
+        }
+        window.addEventListener("keypress", handler)
+        return () => {
+            console.log("RESET effect")
+            window.removeEventListener("keypress", handler)
+        }
+    },[text])
+
+    return <>
+        {text}
+    </>
+}
+
+export const SetTimeoutExample = () => {
+    console.log("UseEffectDemo Component")
+    const [text, setText] = useState("");
+
+    useEffect(()=> {
+
+        const tId = setTimeout(()=> {
+            setText("3s past")
+        }, 3000)
+        return () => {
+            console.log("RESET effect")
+            clearTimeout(tId)
+        }
+    },[text])
+
+    return <>
+        {text}
+    </>
+}
